@@ -1,0 +1,97 @@
+Para cambiar el directorio de la base datos por lineas de comandos
+----------------------------------------------------------------------
+> mongod --dbpath C:\MongoDB\data
+
+*Esto levanta el servidor de datos y cambia el directorio de las bd
+
+*Para el servidor de datos es CTRL+C
+
+
+Ver todos los comando disponibles para mongoDB
+------------------------------------------------
+> mongod -help
+
+Parametros de Configuracion de MongoDB
+-------------------------------------------------
+> --dbpath: 	Ruta al directorio en el que almacena los datos
+> --bind_ip: 	Direccion IP que el servidor mongod escuchara, por defecto 127.0.0.1
+> --port: 	Direccion de puerto en el escuchara mongod, por defecto 27017
+> --logpath: 	Ruta completa hasta el archivo de log donde los mensajes de MongoDb seran escritos
+> --logappaned:	Si configuramos esta opcion como true, añade los mensajes al final del archivo log. Configurado a false sobrescribe el log.
+
+Usar el archivo de configuración (mongodb.conf)
+--------------------------------------------------
+Creamos el archivo "mongodb.conf" y en el cargamos los siguientes comandos:
+dbpath = C:\MongoDB\data
+logpath = C:\MongoDB\mongodb.log
+logappend = true
+
+para que tome esta configuracion le pasamos el siguiente comando;
+> C:\mongodb-2.6.1\bin>mongod --config C:\mongodb.conf
+
+Comando para parar el servidor 
+--------------------------------------
+> use admin
+> db.shutdownServer()
+
+Comando para arracar el sevidor
+-----------------------------------------
+> mongod
+o
+> mongod --dbpath C:\MongoDB\data
+en nuestro caso
+
+
+Ver la version de mongo y activar el promt para ejecutar comandos
+------------------------------------------
+> mongo
+
+Ver las base de datos actualies
+------------------------------------------
+> show dbs
+
+
+Crear una base de datos o seleccionarla
+------------------------------------------
+> use dbpeliculas
+
+
+Crear una coleccion de datos
+------------------------------------------
+> db.peliculas.insert({nombre:"X-Men The Last Stand", genero:"Sci-fi", director:"Bryan Singer", estreno:"21 de mayo de 2014", duracion:134, personajes:"Hugh Jackman, James McAvoy"})
+> db.peliculas.insert({nombre:"300 Rise of an Empire", genero:"Action", director:"Noam Murro", estreno:"5 de marzo de 2014", duracion:102, personajes:"Eva Green, Sullivan Stapleton"})
+> db.peliculas.insert({nombre:"El hobbit la desolación de Smaug", genero:"Fantastico", director:"Noam Murro", estreno:"Peter Jackson", duracion:187, personajes:"Richard Armitage, Evangeline Lilly"})
+
+
+Devuelve como resultado todos los documentos
+------------------------------------------
+> db.peliculas.find()
+
+ar.com.mongodb.peliculas
+
+spring-mongodb-peliculas
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>spring-mongodb-peliculas</groupId>
+  <artifactId>spring-mongodb-peliculas</artifactId>
+  <packaging>war</packaging>
+  <version>1.0</version>
+  <name>spring-mongodb-peliculas Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+
+applicationContext.xml
+  <build>
+    <finalName>spring-mongodb-peliculas</finalName>
+  </build>
+</project>
